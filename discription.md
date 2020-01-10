@@ -1,6 +1,7 @@
 https://coursehunter.net/course/znakomstvo-s-websocket
 ПРОСТЕЙШИЙ WEBSOCKET
 
+& 1  == WEBSOCKET в чистом виде ==
 устанавливаем для node.js ьщдуль для работы с socket
 
 npm i ws --save
@@ -29,6 +30,30 @@ http-server
 
 если в сервер остановим by ctrl+C, то на клиентах появиться надпись "onLine is shated"
 
-\\\\\\\\
-Для СТАРЫХ броузеров, которые еще не поддерживают сокеты, лечим их, подключая на клиенте библиотеки
+
+
+& 2  ==  Socket.io ==
+Для СТАРЫХ броузеров, которые еще не поддерживают сокеты, лечим их, подключая на клиенте библиотеки,
+заменяющие сокет другими технологиями- полинг или лонгПолинг.
+
+Наиболее популярна библиотека Socket.io
+npm i  socket.io --save
+
+она используется и на сервере, и на клиенте- это ее особенность
+
+1. пишем файл socket.js в корне проекта - это сервер,
+и pablic/socketClient.js - это клиент, 
+а в index.html клиента меняем подключаемые скрипты:
+<!--        <script src="app.js"></script>-->
+       <script src="socketClient.js"></script>
+
+2. Подключаем на клиенте функцию io глобально:        
+Для простоты копируем node_modules/socket.io-client/dist/socket.io.js в папку public,
+а в index.html ВЫШЕ(!), чем прописано подключение скрипта socketClient.js, прописываем
+        <script src="socket.io.js"></script>
+
+3. запускаем сервер node socket
+4. запускаем клиента http-server
+
+
 
