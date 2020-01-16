@@ -3,7 +3,8 @@ const messages = document.getElementById('messages');
 const form = document.getElementById('form');
 const input = document.getElementById('input');
 
-const ws = new WebSocket('ws://localhost:3000'); //этот WebSocket- от броузера, а не тот, что мы ставили by npm
+const ws = new WebSocket('ws://localhost:3000');
+//этот WebSocket- от броузера, а не тот, что мы ставили by npm
 //тот WebSocket, что ставили by npm,- для сервера
 //ws://localhost:3000 - url сервера
 
@@ -25,8 +26,8 @@ form.addEventListener('submit', event => {  //ентер по полю инпу�
   input.value = ''
 })
 
-ws.onopen = () => setStatus('onLine');            //подключение произошло. Срабатывает.
-ws.onclose = () => setStatus('onLine is shated'); //подключение завершилось
+ws.onopen = () => setStatus('onLine');            //подключение произошло.
+ws.onclose = () => setStatus('onLine is shuted'); //подключение завершилось
 
 //когда на сервере запускается "ws.send('Ws is connected!')"
 ws.onmessage = response => printMessage(response.data);

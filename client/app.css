@@ -1,6 +1,6 @@
 body {
-    background-color: black;
-    color: #0F0;
+    background-color: #eaeaea;
+    color: #545454;
     font-family: 'Consolas', monospace;
 }
 
@@ -24,8 +24,8 @@ input, label {
 input {
     outline: none;
     border: none;
-    background-color: black;
-    color: #0F0;
+    background-color: rgb(1, 255, 185);
+    color: #1605ff;
     padding: 1em .5em;
     display: block;
     font-size: 1.5em;
