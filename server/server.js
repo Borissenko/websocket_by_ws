@@ -11,9 +11,10 @@ const server = new WebSocket.Server({port: 3000});
 // а подключение ws клиента - проходит неявно (?)
 // ws.send('Добро пожаловать!')  - шлем ДАННОМУ, постучавшемуся на сервер через событие сервера "server.on('connection', клиенту"
 
-// server.clients- массив всех подключенных к серверу клиентов
-// server.clients[5].readyState === WebSocket.OPEN  - когда сервер работает с сокетом данного(№4) клиента
+// server.clients- ТИПО(!) массив всех подключенных к серверу клиентов
+// server.clients[5].readyState === WebSocket.OPEN  - когда сокет данного(№4) клиента обслуживается сервером
 // server.clients[n].send("тебе привет от №5") - шлем указанному клиенту(№n) сообщение
+// однако server.clients- не [], хотя и перебирается by forEach'ем
 
 server.on('connection', ws => {
   ws.on('message', message => {   //получаемое сервером сообщение от клиента
@@ -33,14 +34,14 @@ server.on('connection', ws => {
 
 
 
-// вообще-то server.clients- не [], a Set{WebSocket{},},
+// вообще-то server.clients- не [], a Set{WebSocket{}, WebSocket{}, ...},
 // а в значении readyState стоит не WebSocket.OPEN, а 1
 // причем все продолжает работать и если написать
-// if (client.readyState === 1) { //если у клиента подключен сокет
-//   client.send(message)                      //пошлем всем остальным клиентам из массива всех клиентов сообщение
+// if (client.readyState === 1) {
+//   client.send(message)
 // }
 
-// но если поставить !1 или !WebSocket.OPEN, то слать остальным перестает  ))
+// но если поставить !1 или !WebSocket.OPEN, то слать остальным перестает в обеих случаях ))
 
 
 
